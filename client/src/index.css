@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary-orange: #EE6C29;
+  --color-primary-jet: #282B2B;
+  --color-primary-moonstone: #7AA6B3;
+}
