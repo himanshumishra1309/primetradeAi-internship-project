@@ -27,9 +27,17 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  user_type:{
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user'
+  },
   password:{
     type: String,
     required: true,
+  },
+  refreshToken:{
+    type: String
   }
 }, {timestamps: true});
 
@@ -39,7 +47,7 @@ userSchema.pre('save', async function(){
 })
 
 userSchema.methods.isPasswordCorrect = async function (password) {
-  return await bcrypt.compare(this.password, password);
+  return await bcrypt.compare(password, this.password);
 }
 
 userSchema.methods.generateAccessToken = function () {
