@@ -72,13 +72,13 @@ function TweetsPage() {
   };
 
   const handleDelete = (tweetId) => {
-    setSelectedTweet(tweetId);
+    setDeleteTweetId(tweetId);
     setShowDeleteConfirm(true);
   };
 
   const confirmDelete = async () => {
     try {
-      await tweetService.deleteTweet(selectedTweet);
+      await tweetService.deleteTweet(deleteTweetId);
       setError('');
       await fetchTweets();
     } catch (err) {

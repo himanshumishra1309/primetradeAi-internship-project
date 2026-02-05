@@ -1,9 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = async () => {
     await logout();
@@ -21,14 +22,35 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-white hover:text-primary-orange transition-colors duration-200 font-medium">
+            <Link 
+              to="/" 
+              className={`${
+                location.pathname === '/' 
+                  ? 'text-primary-orange border-b-2 border-primary-orange' 
+                  : 'text-white hover:text-primary-orange'
+              } transition-colors duration-200 font-medium pb-1`}
+            >
               Home
             </Link>
-            <Link to="/tweets" className="text-white hover:text-primary-orange transition-colors duration-200 font-medium">
+            <Link 
+              to="/tweets" 
+              className={`${
+                location.pathname === '/tweets' 
+                  ? 'text-primary-orange border-b-2 border-primary-orange' 
+                  : 'text-white hover:text-primary-orange'
+              } transition-colors duration-200 font-medium pb-1`}
+            >
               Tweets
             </Link>
             {isAuthenticated && (
-              <Link to="/dashboard" className="text-white hover:text-primary-orange transition-colors duration-200 font-medium">
+              <Link 
+                to="/dashboard" 
+                className={`${
+                  location.pathname === '/dashboard' 
+                    ? 'text-primary-orange border-b-2 border-primary-orange' 
+                    : 'text-white hover:text-primary-orange'
+                } transition-colors duration-200 font-medium pb-1`}
+              >
                 Dashboard
               </Link>
             )}

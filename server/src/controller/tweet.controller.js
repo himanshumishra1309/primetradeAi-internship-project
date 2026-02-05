@@ -156,6 +156,13 @@ const updateTweet = asyncHandler(async (req, res) => {
 const deleteTweet = asyncHandler(async (req, res) => {
   const { tweetId } = req.params;
 
+  console.log('Delete tweet request:', {
+    tweetId,
+    userId: req.user?._id,
+    userType: req.user?.user_type,
+    userName: req.user?.username
+  });
+
   if (!tweetId) {
     throw new ApiError(400, "Tweet ID is required");
   }
@@ -163,17 +170,30 @@ const deleteTweet = asyncHandler(async (req, res) => {
   const tweet = await Tweet.findById(tweetId);
 
   if (!tweet) {
+    console.log('Tweet not found:', tweetId);
     throw new ApiError(404, "Tweet not found");
   }
 
+  console.log('Tweet found:', {
+    tweetId: tweet._id,
+    ownerId: tweet.owner
+  });
+
   const isOwner = tweet.owner.toString() === req.user._id.toString();
   const isAdmin = req.user.user_type === "admin";
+
+  console.log('Authorization check:', {
+    isOwner,
+    isAdmin,
+    userType: req.user.user_type
+  });
 
   if (!isOwner && !isAdmin) {
     throw new ApiError(403, "You are not authorized to delete this tweet");
   }
 
   await Tweet.findByIdAndDelete(tweetId);
+  console.log('Tweet deleted successfully');
 
   return res.status(200).json(
     new ApiResponse(200, {}, "Tweet deleted successfully")

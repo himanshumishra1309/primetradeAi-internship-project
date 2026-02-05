@@ -4,7 +4,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { User } from "../model/user.model.js";
 
 export const verifyJWT = asyncHandler(async(req, res, next)=>{
-  const token = req.cookies?.accessToken || req.header("Authorizarion")?.replace("Bearer ", "");
+  const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
 
   if(!token){
     throw new ApiError(401, "Unauthorized Request");
