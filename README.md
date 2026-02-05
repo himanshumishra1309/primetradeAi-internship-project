@@ -12,6 +12,7 @@ A full-stack Twitter clone application built with Node.js, Express, MongoDB, and
 - [Setup Instructions](#setup-instructions)
 - [Environment Variables](#environment-variables)
 - [Running the Application](#running-the-application)
+- [Test Credentials](#test-credentials)
 - [Security Features](#security-features)
 - [Scalability Notes](#scalability-notes)
 
@@ -471,6 +472,8 @@ Frontend will run on `http://localhost:5173`
 4. Open browser: `http://localhost:5173`
 
 ### Create Admin User
+**Note:** Admin accounts can only be created via API (not through the frontend registration form). The frontend registration is restricted to regular users only.
+
 Use Postman or any API client to create an admin user:
 ```http
 POST http://localhost:8000/api/v1/users/register
@@ -488,12 +491,41 @@ Content-Type: application/json
 }
 ```
 
+## 🔑 Test Credentials
+
+### Admin Account
+For testing admin features (delete any tweet):
+- **Email:** admin@tweethub.com
+- **Username:** admin
+- **Password:** admin123
+
+**Note:** Admin accounts must be created through API/Postman as shown above. They cannot be created through the frontend registration form.
+
+### Regular User Accounts
+For testing user features (create, edit, delete own tweets):
+
+**User 1:**
+- **Email:** user@example.com
+- **Username:** user1
+- **Password:** 123456
+
+**User 2:**
+- **Email:** user2@example.com
+- **Username:** user2
+- **Password:** 123456
+
+**Important:** 
+- ✅ Regular users **CAN** register through the frontend at `/register`
+- ❌ Admin accounts **CANNOT** be created through frontend registration
+- ❌ `user_type: "admin"` is ignored in frontend registration for security reasons
+- ✅ Use the API endpoint directly (Postman/cURL) to create admin users
+
 ### Test the Application
-1. **Register** a new user account
-2. **Login** with your credentials
+1. **Register** a new user account through frontend (only creates regular users)
+2. **Login** with admin or user credentials
 3. **Create** tweets from the dashboard
-4. **Edit** your own tweets
-5. **Delete** your tweets or any tweet as admin
+4. **Edit** your own tweets (users only)
+5. **Delete** your tweets (users) or any tweet (admin)
 6. **Like** tweets from other users
 7. **Browse** all tweets in the Tweets page
 
