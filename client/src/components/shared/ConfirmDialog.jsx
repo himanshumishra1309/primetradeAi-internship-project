@@ -8,7 +8,7 @@ const ConfirmDialog = ({
   message, 
   confirmText = 'Confirm', 
   cancelText = 'Cancel',
-  type = 'danger' // danger, warning, info
+  type = 'danger'
 }) => {
   useEffect(() => {
     const handleEscape = (e) => {
