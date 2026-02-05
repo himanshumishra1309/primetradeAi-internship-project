@@ -1,52 +1,52 @@
 const Footer = () => {
   return (
-    <footer className="bg-royal-blue mt-auto">
+    <footer className="bg-gray-800 border-t border-gray-700 mt-auto">
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-2">
-            <div className="bg-powder-blue rounded-lg px-4 py-2 inline-block mb-4">
-              <span className="text-2xl font-bold text-royal-blue">GigFlow</span>
+            <div className="inline-block mb-4">
+              <span className="text-2xl font-bold text-primary-orange">TweetHub</span>
             </div>
-            <p className="text-bone mb-4 leading-relaxed">
-              Your trusted platform for connecting talented freelancers with exciting projects. 
-              Build your career or grow your business with GigFlow.
+            <p className="text-gray-400 mb-4 leading-relaxed">
+              Share your thoughts with the world. Connect, engage, and build your community on TweetHub - 
+              where every voice matters.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 bg-powder-blue rounded-full flex items-center justify-center hover:bg-bone transition-colors duration-200">
-                <span className="text-royal-blue font-bold">f</span>
+              <a href="#" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary-orange transition-colors duration-200 group">
+                <span className="text-primary-orange group-hover:text-white font-bold">f</span>
               </a>
-              <a href="#" className="w-10 h-10 bg-powder-blue rounded-full flex items-center justify-center hover:bg-bone transition-colors duration-200">
-                <span className="text-royal-blue font-bold">in</span>
+              <a href="#" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary-orange transition-colors duration-200 group">
+                <span className="text-primary-orange group-hover:text-white font-bold">in</span>
               </a>
-              <a href="#" className="w-10 h-10 bg-powder-blue rounded-full flex items-center justify-center hover:bg-bone transition-colors duration-200">
-                <span className="text-royal-blue font-bold">X</span>
+              <a href="#" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary-orange transition-colors duration-200 group">
+                <span className="text-primary-orange group-hover:text-white font-bold">X</span>
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-powder-blue font-bold text-lg mb-4">Quick Links</h3>
+            <h3 className="text-primary-moonstone font-bold text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="/gigs" className="text-bone hover:text-blue-600 transition-colors duration-200">
-                  Browse Gigs
+                <a href="/" className="text-gray-400 hover:text-primary-orange transition-colors duration-200">
+                  Home
                 </a>
               </li>
               <li>
-                <a href="/create-gig" className="text-bone hover:text-blue-600 transition-colors duration-200">
-                  Post a Job
+                <a href="/tweets" className="text-gray-400 hover:text-primary-orange transition-colors duration-200">
+                  Explore Tweets
                 </a>
               </li>
               <li>
-                <a href="/my-gigs" className="text-bone hover:text-blue-600 transition-colors duration-200">
-                  My Gigs
+                <a href="/dashboard" className="text-gray-400 hover:text-primary-orange transition-colors duration-200">
+                  Dashboard
                 </a>
               </li>
               <li>
-                <a href="/my-bids" className="text-bone hover:text-blue-600 transition-colors duration-200">
-                  My Bids
+                <a href="/profile" className="text-gray-400 hover:text-primary-orange transition-colors duration-200">
+                  Profile
                 </a>
               </li>
             </ul>
@@ -54,25 +54,25 @@ const Footer = () => {
 
           {/* Support */}
           <div>
-            <h3 className="text-powder-blue font-bold text-lg mb-4">Support</h3>
+            <h3 className="text-primary-moonstone font-bold text-lg mb-4">Support</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-bone hover:text-blue-600 transition-colors duration-200">
+                <a href="#" className="text-gray-400 hover:text-primary-orange transition-colors duration-200">
                   Help Center
                 </a>
               </li>
               <li>
-                <a href="#" className="text-bone hover:text-blue-600 transition-colors duration-200">
+                <a href="#" className="text-gray-400 hover:text-primary-orange transition-colors duration-200">
                   Terms of Service
                 </a>
               </li>
               <li>
-                <a href="#" className="text-bone hover:text-blue-600 transition-colors duration-200">
+                <a href="#" className="text-gray-400 hover:text-primary-orange transition-colors duration-200">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#" className="text-bone hover:text-blue-600 transition-colors duration-200">
+                <a href="#" className="text-gray-400 hover:text-primary-orange transition-colors duration-200">
                   Contact Us
                 </a>
               </li>
@@ -81,9 +81,9 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-powder-blue mt-8 pt-8 text-center">
-          <p className="text-bone text-sm">
-            © 2026 GigFlow. All rights reserved. Built with ❤️ for freelancers and clients.
+        <div className="border-t border-gray-700 mt-8 pt-8 text-center">
+          <p className="text-gray-400 text-sm">
+            © 2026 TweetHub. All rights reserved. Share your thoughts with the world.
           </p>
         </div>
       </div>
