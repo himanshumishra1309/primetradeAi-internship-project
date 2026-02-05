@@ -47,12 +47,6 @@ function AdminDashboard() {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Page Header */}
-        <div className="mb-8">
-          <h2 className="text-4xl font-bold text-white mb-2">Admin Dashboard</h2>
-          <p className="text-primary-moonstone text-lg">Monitor and manage all platform activity</p>
-        </div>
-
         {/* Statistics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 shadow-lg">

@@ -1,4 +1,39 @@
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+
 function Login() {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      await login(formData);
+      navigate('/dashboard');
+    } catch (err) {
+      setError(err.response?.data?.message || 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="bg-primary-jet min-h-screen flex items-center justify-center">
       <div className="w-full max-w-md px-6">
@@ -12,7 +47,13 @@ function Login() {
         <div className="bg-gray-800 rounded-2xl shadow-2xl p-8 border border-gray-700">
           <h2 className="text-3xl font-bold text-white mb-6 text-center">Welcome Back</h2>
           
-          <form className="space-y-5">
+          {error && (
+            <div className="mb-4 p-3 bg-red-900 border border-red-700 rounded-lg text-red-200 text-sm">
+              {error}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-5">
             {/* Email Input */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-primary-moonstone mb-2">Email Address</label>
@@ -20,6 +61,8 @@ function Login() {
                 type="email" 
                 id="email" 
                 name="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Enter your email"
                 className="w-full px-4 py-3 bg-primary-jet border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-orange focus:border-transparent transition"
                 required
@@ -33,6 +76,8 @@ function Login() {
                 type="password" 
                 id="password" 
                 name="password"
+                value={formData.password}
+                onChange={handleChange}
                 placeholder="Enter your password"
                 className="w-full px-4 py-3 bg-primary-jet border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-orange focus:border-transparent transition"
                 required
@@ -51,9 +96,10 @@ function Login() {
             {/* Login Button */}
             <button 
               type="submit"
-              className="w-full bg-primary-orange hover:bg-orange-600 text-white font-semibold py-3 px-4 rounded-lg transition duration-200 transform hover:scale-[1.02] shadow-lg"
+              disabled={loading}
+              className="w-full bg-primary-orange hover:bg-orange-600 text-white font-semibold py-3 px-4 rounded-lg transition duration-200 transform hover:scale-[1.02] shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Sign In
+              {loading ? 'Signing In...' : 'Sign In'}
             </button>
           </form>
 
@@ -70,7 +116,7 @@ function Login() {
           {/* Register Link */}
           <p className="text-center text-gray-400">
             Don't have an account? 
-            <a href="#" className="text-primary-orange hover:text-orange-400 font-semibold transition ml-1">Sign Up</a>
+            <Link to="/register" className="text-primary-orange hover:text-orange-400 font-semibold transition ml-1">Sign Up</Link>
           </p>
         </div>
 

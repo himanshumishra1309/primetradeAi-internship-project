@@ -1,37 +1,66 @@
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+
 const Navbar = () => {
+  const { user, isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/');
+  };
+
   return (
     <nav className="bg-gray-800 border-b border-gray-700 shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <a href="/" className="flex items-center">
+            <Link to="/" className="flex items-center">
               <span className="text-2xl font-bold text-primary-orange">TweetHub</span>
-            </a>
+            </Link>
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
-            <a href="/" className="text-white hover:text-primary-orange transition-colors duration-200 font-medium">
+            <Link to="/" className="text-white hover:text-primary-orange transition-colors duration-200 font-medium">
               Home
-            </a>
-            <a href="/tweets" className="text-white hover:text-primary-orange transition-colors duration-200 font-medium">
-              Explore
-            </a>
-            <a href="/dashboard" className="text-white hover:text-primary-orange transition-colors duration-200 font-medium">
-              Dashboard
-            </a>
+            </Link>
+            <Link to="/tweets" className="text-white hover:text-primary-orange transition-colors duration-200 font-medium">
+              Tweets
+            </Link>
+            {isAuthenticated && (
+              <Link to="/dashboard" className="text-white hover:text-primary-orange transition-colors duration-200 font-medium">
+                Dashboard
+              </Link>
+            )}
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-            <a href="/login">
-              <button className="px-6 py-2 text-white bg-gray-700 hover:bg-gray-600 transition-colors duration-200 rounded-lg font-medium cursor-pointer">
-                Login
-              </button>
-            </a>
-            <a href="/register">
-              <button className="px-6 py-2 bg-primary-orange text-white hover:bg-orange-600 transition-colors duration-200 rounded-lg font-medium cursor-pointer shadow-lg">
-                Sign Up
-              </button>
-            </a>
+            {isAuthenticated ? (
+              <>
+                <span className="text-gray-300 text-sm">
+                  Welcome, <span className="text-primary-orange font-semibold">{user?.f_name || user?.username}</span>
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className="px-6 py-2 bg-gray-700 text-white hover:bg-gray-600 transition-colors duration-200 rounded-lg font-medium cursor-pointer"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login">
+                  <button className="px-6 py-2 text-white bg-gray-700 hover:bg-gray-600 transition-colors duration-200 rounded-lg font-medium cursor-pointer">
+                    Login
+                  </button>
+                </Link>
+                <Link to="/register">
+                  <button className="px-6 py-2 bg-primary-orange text-white hover:bg-orange-600 transition-colors duration-200 rounded-lg font-medium cursor-pointer shadow-lg">
+                    Sign Up
+                  </button>
+                </Link>
+              </>
+            )}
           </div>
 
           <div className="md:hidden">
