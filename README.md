@@ -715,29 +715,3 @@ taskkill /PID <PID> /F
 # macOS/Linux
 lsof -ti:8000 | xargs kill -9
 ```
-
-## 👥 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
-## 📧 Contact
-
-**Developer:** [Your Name]
-**Email:** [Your Email]
-**GitHub:** [Your GitHub Profile]
-**LinkedIn:** [Your LinkedIn Profile]
-
----
-
-**Built with ❤️ for Primetrade Backend Developer Assignment**
-
-*Submission Date: [Current Date]*
-*Time Taken: [Your Time]*
